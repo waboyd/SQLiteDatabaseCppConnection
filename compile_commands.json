@@ -1,0 +1,13 @@
+[{
+  "file": "C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection\\SQLiteConnection.h",
+  "directory": "C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection",
+  "command": "clang  -c C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection\\SQLiteConnection.h -o C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection\\SQLiteConnection.h.o -target x86_64-pc-windows-gnu -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include\\c++ -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include\\c++\\mingw32 -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include\\c++\\backward -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include -Ic:\\MinGW\\include -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include-fixed -I. -I. -I..\\SQLite  -g  -O0  -Wall"
+ }, {
+  "file": "C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection\\main.cpp",
+  "directory": "C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection",
+  "command": "clang  -c C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection\\main.cpp -o C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection\\main.cpp.o -target x86_64-pc-windows-gnu -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include\\c++ -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include\\c++\\mingw32 -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include\\c++\\backward -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include -Ic:\\MinGW\\include -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include-fixed -I. -I. -I..\\SQLite  -g  -O0  -Wall"
+ }, {
+  "file": "C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection\\SQLiteConnection.cpp",
+  "directory": "C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection",
+  "command": "clang  -c C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection\\SQLiteConnection.cpp -o C:\\Users\\Seeker\\Documents\\programming\\SQLDatabaseCppConnection\\SQLiteConnection\\SQLiteConnection.cpp.o -target x86_64-pc-windows-gnu -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include\\c++ -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include\\c++\\mingw32 -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include\\c++\\backward -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include -Ic:\\MinGW\\include -Ic:\\MinGW\\lib\\gcc\\mingw32\\8.2.0\\include-fixed -I. -I. -I..\\SQLite  -g  -O0  -Wall"
+ }]
