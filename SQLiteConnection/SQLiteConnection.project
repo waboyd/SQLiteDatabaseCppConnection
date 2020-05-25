@@ -8,6 +8,8 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="SQLiteStatement.cpp"/>
+    <File Name="SQLiteStatement.h"/>
     <File Name="main.cpp"/>
     <File Name="SQLiteConnection.cpp"/>
     <File Name="SQLiteConnection.h"/>

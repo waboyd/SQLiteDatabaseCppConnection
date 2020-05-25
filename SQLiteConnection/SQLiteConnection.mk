@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Seeker
-Date                   :=22/05/2020
+Date                   :=24/05/2020
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/SQLiteConnection.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/SQLiteStatement.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/SQLiteConnection.cpp$(ObjectSuffix) 
 
 
 
@@ -93,6 +93,14 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/SQLiteStatement.cpp$(ObjectSuffix): SQLiteStatement.cpp $(IntermediateDirectory)/SQLiteStatement.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Seeker/Documents/programming/SQLDatabaseCppConnection/SQLiteConnection/SQLiteStatement.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/SQLiteStatement.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/SQLiteStatement.cpp$(DependSuffix): SQLiteStatement.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/SQLiteStatement.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/SQLiteStatement.cpp$(DependSuffix) -MM SQLiteStatement.cpp
+
+$(IntermediateDirectory)/SQLiteStatement.cpp$(PreprocessSuffix): SQLiteStatement.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/SQLiteStatement.cpp$(PreprocessSuffix) SQLiteStatement.cpp
+
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Seeker/Documents/programming/SQLDatabaseCppConnection/SQLiteConnection/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp

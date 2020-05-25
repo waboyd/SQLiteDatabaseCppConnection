@@ -34,3 +34,6 @@
 SQLite/
 SQLite/*
 SQLiteConnection/main.cpp
+
+TestDatabases/
+TestDatabases/*
