@@ -5,13 +5,14 @@
 
 class SQLiteConnection
 {
-// ToDo: Create a copy constructor.
-// ToDo: Create an assignment copy constructor.
-    
 private:
     sqlite3 *database_connector;
     SQLiteStatement *current_statement;
     int statement_status;
+    
+    // No SQLiteConnection object should be copied.
+    SQLiteConnection(const SQLiteConnection& original);
+    void operator=(const SQLiteConnection& original);
 
     /**
      * @brief Set up and initialize this SQLiteConnection object.

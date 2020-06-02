@@ -11,9 +11,19 @@ SQLiteConnection::SQLiteConnection(const char* database_file_path)
     this->database_setup(database_file_path);
 }
 
+SQLiteConnection::SQLiteConnection(const SQLiteConnection& original)
+{
+    throw std::invalid_argument("An attempt was made to copy a SQLiteConnection object, which is not permitted.");
+}
+
 SQLiteConnection::~SQLiteConnection()
 {
     this->close();    
+}
+
+void SQLiteConnection::operator=(const SQLiteConnection& original)
+{
+    throw std::invalid_argument("An attempt was made to copy a SQLiteConnection object, which is not permitted.");
 }
 
 void SQLiteConnection::database_setup(const char* database_file_path)

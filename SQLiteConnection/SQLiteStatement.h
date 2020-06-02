@@ -6,9 +6,10 @@
 
 class SQLiteStatement
 {
-// ToDo: Create a copy constructor.
-// ToDo: Create an assignment copy constructor.
 private:
+    // No SQLiteStatement object should be copied.
+    SQLiteStatement(const SQLiteStatement& original);
+    void operator=(const SQLiteStatement& original);
     sqlite3 *database_connector;
     sqlite3_stmt *prepared_statement;
     SQLiteStatement *next_statement;

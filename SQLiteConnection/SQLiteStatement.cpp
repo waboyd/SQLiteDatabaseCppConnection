@@ -6,6 +6,11 @@ SQLiteStatement::SQLiteStatement()
     // An object instatiated with this is not usable until associated with a database and statement.
 }
 
+SQLiteStatement::SQLiteStatement(const SQLiteStatement& original)
+{
+    throw std::invalid_argument("An attempt was made to copy a SQLiteStatement object, which is not permitted.");
+}
+
 SQLiteStatement::SQLiteStatement(sqlite3* database_connector)
 {
     this->database_connector = database_connector;
@@ -27,6 +32,11 @@ SQLiteStatement::SQLiteStatement(sqlite3* database_connector, const char* statem
 SQLiteStatement::~SQLiteStatement()
 {
     this->finalize();
+}
+
+void SQLiteStatement::operator=(const SQLiteStatement& original)
+{
+    throw std::invalid_argument("An attempt was made to copy a SQLiteStatement object, which is not permitted.");
 }
 
 void SQLiteStatement::compile_statement(const char* statement_string)
