@@ -100,7 +100,7 @@ public:
      * @param column_number The column number to read, where the first column is 0.
      * @return The value of the element as a long int.
      */
-    long get_result_long(int column_number);
+    long long get_result_long(int column_number);
     
     /**
      * @brief Read the value from the current row of the current statement as a double.

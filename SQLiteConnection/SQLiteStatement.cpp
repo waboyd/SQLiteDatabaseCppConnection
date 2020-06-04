@@ -123,3 +123,25 @@ void SQLiteStatement::finalize()
         delete(this->next_statement);
     }
 }
+
+long long SQLiteStatement::query_result_long(int column_number)
+{
+    return sqlite3_column_int64(this->prepared_statement, column_number);
+}
+
+const std::string SQLiteStatement::query_result_string(int column_number)
+{
+    const unsigned char* c_string_result = sqlite3_column_text(this->prepared_statement, column_number);
+    const std::string result_string((char*)c_string_result);
+    return result_string;
+}
+
+const unsigned char* SQLiteStatement::query_result_c_string(int column_number)
+{
+    return sqlite3_column_text(this->prepared_statement, column_number);
+}
+
+double SQLiteStatement::query_result_double(int column_number)
+{
+    return sqlite3_column_double(this->prepared_statement, column_number);
+}

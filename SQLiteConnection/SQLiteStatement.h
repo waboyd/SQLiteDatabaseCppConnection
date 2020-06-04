@@ -29,6 +29,11 @@ public:
     
     int step();
     void finalize();
+    
+    long long query_result_long(int column_number);
+    const std::string query_result_string(int column_number);
+    const unsigned char* query_result_c_string(int column_number);
+    double query_result_double(int column_number);
 
 };
 
