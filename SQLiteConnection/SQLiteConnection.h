@@ -53,8 +53,8 @@ public:
      * @brief Associates this object with a set of SQLite statements that can then be stepped through.
      * This method replaces any previously set statement for this object.
      * The methods step_statement(), get_result_string(), get_result_chars(), get_result_long(),
-     * get_result_double(), finish_statement_execution(), and cancel_statement() are all related to the
-     * currently set SQLite statement.
+     * get_result_double(), finish_statement_execution(), reset_statement(), and cancel_statement() are
+     * all related to the currently set SQLite statement.
      * @param statement SQLite statement to set as the current statement.
      * @return The status from compilation of the SQLite statement.
      */
@@ -109,6 +109,13 @@ public:
      * @return The value of the element as a double.
      */
     double get_result_double(int column_number);
+    
+    /**
+     * @brief Reset the current SQLite statement, so that the statement will be ready to execute from the beginning.
+     * The statement must first be set using the set_statement method.
+     * @return The status of the SQLite statement after the reset.
+     */
+    int reset_statement();
     
     /**
      * @brief Complete execution of the current SQLite statements, and remove them from this object. 

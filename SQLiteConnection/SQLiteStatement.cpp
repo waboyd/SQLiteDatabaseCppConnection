@@ -83,6 +83,10 @@ SQLiteStatement& SQLiteStatement::operator=(const char* statement_string)
 int SQLiteStatement::step()
 {
     int step_result;
+    if (this->prepared_statement == NULL)
+    {
+        throw std::logic_error("The step() method was called for a SQLite statement that is not set.");
+    }
     if (this->is_completed && this->next_statement != NULL)
     {
         step_result = this->next_statement->step();
@@ -102,6 +106,22 @@ int SQLiteStatement::step()
         }
     }
     return step_result;
+}
+
+int SQLiteStatement::reset()
+{
+    int reset_result;
+    if (this->prepared_statement == NULL)
+    {
+        throw std::logic_error("The reset() method was called for a SQLite statement that is not set.");
+    }
+    reset_result = sqlite3_reset(this->prepared_statement);
+    if (reset_result != SQLITE_OK)
+    {
+        // Explain the error.
+        std::cerr << sqlite3_errstr(reset_result) << std::endl;
+    }
+    return reset_result;
 }
 
 void SQLiteStatement::finalize()
@@ -126,11 +146,21 @@ void SQLiteStatement::finalize()
 
 long long SQLiteStatement::query_result_long(int column_number)
 {
+    if (this->prepared_statement == NULL)
+    {
+        throw std::logic_error("The method query_result_long() was called for "
+                "a SQLiteStatement that is not set.");
+    }
     return sqlite3_column_int64(this->prepared_statement, column_number);
 }
 
 const std::string SQLiteStatement::query_result_string(int column_number)
 {
+    if (this->prepared_statement == NULL)
+    {
+        throw std::logic_error("The method query_result_string() was called for "
+                "a SQLiteStatement that is not set.");
+    }
     const unsigned char* c_string_result = sqlite3_column_text(this->prepared_statement, column_number);
     const std::string result_string((char*)c_string_result);
     return result_string;
@@ -138,10 +168,20 @@ const std::string SQLiteStatement::query_result_string(int column_number)
 
 const unsigned char* SQLiteStatement::query_result_c_string(int column_number)
 {
+    if (this->prepared_statement == NULL)
+    {
+        throw std::logic_error("The method query_result_c_string() was called for "
+                "a SQLiteStatement that is not set.");
+    }
     return sqlite3_column_text(this->prepared_statement, column_number);
 }
 
 double SQLiteStatement::query_result_double(int column_number)
 {
+    if (this->prepared_statement == NULL)
+    {
+        throw std::logic_error("The method query_result_double() was called for "
+                "a SQLiteStatement that is not set.");
+    }
     return sqlite3_column_double(this->prepared_statement, column_number);
 }

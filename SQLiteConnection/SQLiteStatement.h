@@ -28,6 +28,7 @@ public:
     SQLiteStatement& operator=(const char* statement_string);
     
     int step();
+    int reset();
     void finalize();
     
     long long query_result_long(int column_number);
