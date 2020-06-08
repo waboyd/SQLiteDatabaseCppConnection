@@ -144,6 +144,40 @@ void SQLiteStatement::finalize()
     }
 }
 
+int SQLiteStatement::set_int_argument(int parameter_number, long long value)
+{
+    int status;
+    if (this->prepared_statement == NULL)
+    {
+        throw std::logic_error("The set_int_argument() method was called for a SQLite statement that is not set.");
+    }
+    status = sqlite3_bind_int64(this->prepared_statement, parameter_number, value);
+    if (status != SQLITE_OK)
+    {
+        // Explain the error.
+        std::cerr << "An error occurred when setting an integer SQLite parameter.\n" <<
+                sqlite3_errstr(status) << std::endl;
+    }
+    return status;
+}
+
+int SQLiteStatement::set_float_argument(int parameter_number, double value)
+{
+    int status;
+    if (this->prepared_statement == NULL)
+    {
+        throw std::logic_error("The set_float_argument() method was called for a SQLite statement that is not set.");
+    }
+    status = sqlite3_bind_double(this->prepared_statement, parameter_number, value);
+    if (status != SQLITE_OK)
+    {
+        // Explain the error.
+        std::cerr << "An error occurred when setting a floating point SQLite parameter.\n" <<
+                sqlite3_errstr(status) << std::endl;
+    }
+    return status;
+}
+
 long long SQLiteStatement::query_result_long(int column_number)
 {
     if (this->prepared_statement == NULL)

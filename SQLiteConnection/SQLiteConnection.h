@@ -63,9 +63,9 @@ public:
     /**
      * @brief Associates this object with a set of SQLite statements that can then be stepped through.
      * This method replaces any previously set statement for this object.
-     * The methods step_statement(), get_result_string(), get_result_chars(), get_result_long(),
-     * get_result_double(), finish_statement_execution(), and cancel_statement() are all related to the
-     * currently set SQLite statement.
+     * The methods step_statement(), set_int_argument(), set_float_argument(), get_result_string(),
+     * get_result_chars(), get_result_long(), get_result_double(), finish_statement_execution(),
+     * and cancel_statement() are all related to the currently set SQLite statement.
      * @param statement SQLite statement to set as the current statement.
      * @return The status from compilation of the SQLite statement.
      */
@@ -77,6 +77,24 @@ public:
      * @return The current status of the SQLite statement execution.
      */
     int step_statement();
+    
+    /**
+     * @brief Set an integer value for a parameter in the current SQLite statement.
+     * The statement must first be set using the set_statement method.
+     * @param parameter_number The index number of the parameter to set.
+     * @param value The value of the argument.
+     * @return The resulting SQLite status from the action.
+     */
+    int set_int_argument(int parameter_number, long long value);
+    
+    /**
+     * @brief Set an floating-point value for a parameter in the current SQLite statement.
+     * The statement must first be set using the set_statement method.
+     * @param parameter_number The index number of the parameter to set.
+     * @param value The value of the argument.
+     * @return The resulting SQLite status from the action.
+     */
+    int set_float_argument(int parameter_number, double value);
     
     /**
      * @brief Read the value from the current row of the current statement as a C++ string.

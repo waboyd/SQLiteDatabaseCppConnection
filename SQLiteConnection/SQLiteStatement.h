@@ -31,6 +31,8 @@ public:
     int reset();
     void finalize();
     
+    int set_int_argument(int parameter_number, long long value);
+    int set_float_argument(int parameter_number, double value);
     long long query_result_long(int column_number);
     const std::string query_result_string(int column_number);
     const unsigned char* query_result_c_string(int column_number);

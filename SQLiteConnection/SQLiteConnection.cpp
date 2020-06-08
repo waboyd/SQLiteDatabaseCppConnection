@@ -117,6 +117,26 @@ int SQLiteConnection::step_statement()
     return this->statement_status;
 }
 
+int SQLiteConnection::set_int_argument(int parameter_number, long long value)
+{
+    if (this->current_statement == NULL)
+    {
+        throw std::logic_error("The set_int_argument() method was called with no current SQLite statement.");
+    }
+    this->statement_status = this->current_statement->set_int_argument(parameter_number, value);
+    return this->statement_status;
+}
+
+int SQLiteConnection::set_float_argument(int parameter_number, double value)
+{
+    if (this->current_statement == NULL)
+    {
+        throw std::logic_error("The set_float_argument() method was called with no current SQLite statement.");
+    }
+    this->statement_status = this->current_statement->set_float_argument(parameter_number, value);
+    return this->statement_status;
+}
+
 std::string SQLiteConnection::get_result_string(int column_number)
 {
     if (this->current_statement == NULL)
