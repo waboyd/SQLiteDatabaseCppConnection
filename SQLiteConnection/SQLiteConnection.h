@@ -137,6 +137,7 @@ public:
     
     /**
      * @brief Complete execution of the current SQLite statements, and remove them from this object. 
+     * The statement must first be set using the set_statement method.
      * @return The final status of the SQLite statement after execution.
      */
     int finish_statement_execution();
