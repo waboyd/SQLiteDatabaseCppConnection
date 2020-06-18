@@ -57,21 +57,21 @@ int SQLiteConnection::close()
     return database_status;
 }
 
-/**
- * @brief Runs SQLite statements without storing or displaying results.
- * @param statements SQLite statements to run.
- * @return Final status of the statement execution.
- */
+int SQLiteConnection::run_statement(const std::string statement)
+{
+    return this->run_statements(statement.c_str());
+}
+
+int SQLiteConnection::run_statement(const char* statement)
+{
+    return this->run_statements(statement);
+}
+
 int SQLiteConnection::run_statements(const std::string statements)
 {
     return this->run_statements(statements.c_str());
 }
 
-/**
- * @brief Runs SQLite statements without storing or displaying results.
- * @param statements SQLite statements to run.
- * @return Final status of the statement execution.
- */
 int SQLiteConnection::run_statements(const char* statements)
 {
     if (this->database_connector == NULL)

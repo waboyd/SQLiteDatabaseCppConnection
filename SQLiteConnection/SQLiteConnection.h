@@ -39,6 +39,22 @@ public:
      * @param statements SQLite statements to execute.
      * @return The final status of the execution of the statements.
      */
+    int run_statement(const std::string statement);
+
+    /**
+     * @brief Runs a set of SQLite statements, each of which ends with a semicolon.
+     * This method does not retrieve information from the database.
+     * @param statements SQLite statements to execute.
+     * @return The final status of the execution of the statements.
+     */
+    int run_statement(const char* statement);
+
+    /**
+     * @brief Runs a set of SQLite statements, each of which ends with a semicolon.
+     * This method does not retrieve information from the database.
+     * @param statements SQLite statements to execute.
+     * @return The final status of the execution of the statements.
+     */
     int run_statements(const std::string statements);
 
     /**
