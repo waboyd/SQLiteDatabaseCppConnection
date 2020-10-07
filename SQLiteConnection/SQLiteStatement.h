@@ -1,5 +1,5 @@
 #pragma once
-#include "SQLite3.h"
+#include "sqlite3.h"
 #include <iostream>
 
 #define SQLITESTATEMENT_NOT_FINISHED    5001

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="SQLDatabaseCppConnection" Database="" Version="10.0.0">
   <Project Name="SQLiteConnection" Path="SQLiteConnection/SQLiteConnection.project" Active="Yes"/>
+  <Project Name="SQLiteConnectionLibCompiler" Path="SQLiteConnection/SQLiteConnectionLibCompiler.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="SQLiteConnection" ConfigName="Debug"/>
+      <Project Name="SQLiteConnectionLibCompiler" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="SQLiteConnection" ConfigName="Release"/>
+      <Project Name="SQLiteConnectionLibCompiler" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

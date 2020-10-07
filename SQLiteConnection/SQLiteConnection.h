@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-//#include "SQLite3.h"
+#include "SQLite3.h"
 #include "SQLiteStatement.h"
 
 class SQLiteConnection

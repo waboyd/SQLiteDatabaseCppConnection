@@ -141,6 +141,7 @@ void SQLiteStatement::finalize()
     if (this->next_statement != NULL)
     {
         delete(this->next_statement);
+        this->next_statement = NULL;
     }
 }
 

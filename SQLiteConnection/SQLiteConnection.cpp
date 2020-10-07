@@ -44,6 +44,7 @@ int SQLiteConnection::close()
 {
     int database_status;
     delete(this->current_statement);
+    this->current_statement = NULL;
     database_status = sqlite3_close(this->database_connector);
     if (database_status != SQLITE_OK)
     {
