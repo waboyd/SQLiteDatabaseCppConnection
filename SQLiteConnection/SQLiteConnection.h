@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "SQLite3.h"
 #include "SQLiteStatement.h"
 
@@ -118,7 +119,7 @@ public:
      * @param column_number The column number to read, where the first column is 0.
      * @return The value of the element as a C++ string.
      */
-    std::string get_result_string(int column_number);
+    std::string get_result_string(int column_number) const;
     
     /**
      * @brief Read the value from the current row of the current statement as a C string.
@@ -126,7 +127,7 @@ public:
      * @param column_number The column number to read, where the first column is 0.
      * @return The value of the element as a C string.
      */
-    char* get_result_chars(int column_number);
+    char* get_result_chars(int column_number) const;
     
     /**
      * @brief Read the value from the current row of the current statement as a long int.
@@ -134,7 +135,7 @@ public:
      * @param column_number The column number to read, where the first column is 0.
      * @return The value of the element as a long int.
      */
-    long long get_result_long(int column_number);
+    long long get_result_long(int column_number) const;
     
     /**
      * @brief Read the value from the current row of the current statement as a double.
@@ -142,7 +143,7 @@ public:
      * @param column_number The column number to read, where the first column is 0.
      * @return The value of the element as a double.
      */
-    double get_result_double(int column_number);
+    double get_result_double(int column_number) const;
     
     /**
      * @brief Reset the current SQLite statement, so that the statement will be ready to execute from the beginning.
@@ -164,4 +165,60 @@ public:
      * @return The SQLite status from the finalize statement.
      */
     int cancel_statement();
+    
+    /**
+     * @brief Query a single column of integer values from the database and return the results as a list.
+     * @param statement SQLite query of exactly one table column.
+     * @return The list of integer results from the query.
+     */
+    std::vector<long long> query_long_column(const char* statement);
+
+    /**
+     * @brief Query a single column of integer values from the database and return the results as a list.
+     * @param statement SQLite query of exactly one table column.
+     * @return The list of integer results from the query.
+     */
+    std::vector<long long> query_long_column(const std::string statement);
+
+    /**
+     * @brief Query a single column of string values from the database and return the results as a list.
+     * @param statement SQLite query of exactly one table column.
+     * @return The list of integer results from the query.
+     */
+    std::vector<std::string> query_string_column(const char* statement);
+    
+    /**
+     * @brief Query a single column of string values from the database and return the results as a list.
+     * @param statement SQLite query of exactly one table column.
+     * @return The list of integer results from the query.
+     */
+    std::vector<std::string> query_string_column(const std::string statement);
+
+    /**
+     * @brief Query and return columns of integer values from the database.
+     * @param statement SQLite query of integer columns.
+     * @return The lists of integer results from the query. Each element of the outer vector is one row of the query results.
+     */
+    std::vector<std::vector<long long>> query_long_columns(const char* statement);
+
+    /**
+     * @brief Query and return columns of integer values from the database.
+     * @param statement SQLite query of integer columns.
+     * @return The lists of integer results from the query. Each element of the outer vector is one row of the query results.
+     */
+    std::vector<std::vector<long long>> query_long_columns(const std::string statement);
+
+    /**
+     * @brief Query and return columns of string values from the database.
+     * @param statement SQLite query.
+     * @return The lists of results from the query as strings. Each element of the outer vector is one row of the query results.
+     */
+    std::vector<std::vector<std::string>> query_string_columns(const char* statement);
+
+    /**
+     * @brief Query and return columns of string values from the database.
+     * @param statement SQLite query.
+     * @return The lists of results from the query as strings. Each element of the outer vector is one row of the query results.
+     */
+    std::vector<std::vector<std::string>> query_string_columns(const std::string statement);
 };

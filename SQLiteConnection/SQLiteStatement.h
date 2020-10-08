@@ -70,34 +70,40 @@ public:
      * @return The resulting SQLite status from the action.
      */
     int set_float_argument(int parameter_number, double value);
+    
+    /**
+     * @brief Return the number of columns in the result of the query.
+     * @return The number of columns in the result of the query.
+     */
+    int num_columns() const;
 
     /**
      * @brief Return an integer value from the current row of the result of the query.
      * @param column_number The column number of the result to return, where the first column is 0.
      * @return The value of the element as a long long integer.
      */
-    long long query_result_long(int column_number);
+    long long query_result_long(int column_number) const;
     
     /**
      * @brief Return a string value from the current row of the result of the query.
      * @param column_number The column number of the result to return, where the first column is 0.
      * @return The value of the element as a C++ string.
      */
-    const std::string query_result_string(int column_number);
+    const std::string query_result_string(int column_number) const;
 
     /**
      * @brief Return an string value from the current row of the result of the query.
      * @param column_number The column number of the result to return, where the first column is 0.
      * @return The value of the element as a C-string.
      */
-    const unsigned char* query_result_c_string(int column_number);
+    const unsigned char* query_result_c_string(int column_number) const;
     
     /**
      * @brief Return a floating point value from the current row of the result of the query.
      * @param column_number The column number of the result to return, where the first column is 0.
      * @return The value of the element as a double.
      */
-    double query_result_double(int column_number);
+    double query_result_double(int column_number) const;
 
 };
 

@@ -179,7 +179,17 @@ int SQLiteStatement::set_float_argument(int parameter_number, double value)
     return status;
 }
 
-long long SQLiteStatement::query_result_long(int column_number)
+int SQLiteStatement::num_columns() const
+{
+    if (this->prepared_statement == NULL)
+    {
+        throw std::logic_error("The method num_columns() was called for "
+                "a SQLiteStatement that is not set.");
+    }
+    return sqlite3_column_count(this->prepared_statement);
+}
+
+long long SQLiteStatement::query_result_long(int column_number) const
 {
     if (this->prepared_statement == NULL)
     {
@@ -189,7 +199,7 @@ long long SQLiteStatement::query_result_long(int column_number)
     return sqlite3_column_int64(this->prepared_statement, column_number);
 }
 
-const std::string SQLiteStatement::query_result_string(int column_number)
+const std::string SQLiteStatement::query_result_string(int column_number) const
 {
     if (this->prepared_statement == NULL)
     {
@@ -201,7 +211,7 @@ const std::string SQLiteStatement::query_result_string(int column_number)
     return result_string;
 }
 
-const unsigned char* SQLiteStatement::query_result_c_string(int column_number)
+const unsigned char* SQLiteStatement::query_result_c_string(int column_number) const
 {
     if (this->prepared_statement == NULL)
     {
@@ -211,7 +221,7 @@ const unsigned char* SQLiteStatement::query_result_c_string(int column_number)
     return sqlite3_column_text(this->prepared_statement, column_number);
 }
 
-double SQLiteStatement::query_result_double(int column_number)
+double SQLiteStatement::query_result_double(int column_number) const
 {
     if (this->prepared_statement == NULL)
     {

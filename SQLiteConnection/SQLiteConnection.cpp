@@ -138,7 +138,7 @@ int SQLiteConnection::set_float_argument(int parameter_number, double value)
     return this->statement_status;
 }
 
-std::string SQLiteConnection::get_result_string(int column_number)
+std::string SQLiteConnection::get_result_string(int column_number) const
 {
     if (this->current_statement == NULL)
     {
@@ -147,7 +147,7 @@ std::string SQLiteConnection::get_result_string(int column_number)
     return this->current_statement->query_result_string(column_number);
 }
 
-char* SQLiteConnection::get_result_chars(int column_number)
+char* SQLiteConnection::get_result_chars(int column_number) const
 {
     if (this->current_statement == NULL)
     {
@@ -156,7 +156,7 @@ char* SQLiteConnection::get_result_chars(int column_number)
     return (char*)this->current_statement->query_result_c_string(column_number);
 }
 
-long long SQLiteConnection::get_result_long(int column_number)
+long long SQLiteConnection::get_result_long(int column_number) const
 {
     if (this->current_statement == NULL)
     {
@@ -165,7 +165,7 @@ long long SQLiteConnection::get_result_long(int column_number)
     return this->current_statement->query_result_long(column_number);
 }
 
-double SQLiteConnection::get_result_double(int column_number)
+double SQLiteConnection::get_result_double(int column_number) const
 {
     if (this->current_statement == NULL)
     {
@@ -215,4 +215,122 @@ int SQLiteConnection::cancel_statement()
     this->current_statement = NULL;
     this->statement_status = SQLITE_OK;
     return SQLITE_OK;   
+}
+
+std::vector<long long> SQLiteConnection::query_long_column(const char* statement) {
+    std::vector<long long> result_list;
+    
+    if (this->database_connector == NULL)
+    {
+        throw std::logic_error("An attempt was made to use a closed SQLite connection.\n");
+    }
+    SQLiteStatement compiled_statement(this->database_connector, statement);
+    int execution_result = compiled_statement.step();
+    while (execution_result == SQLITE_ROW || execution_result == SQLITESTATEMENT_NOT_FINISHED)
+    {
+        result_list.push_back(compiled_statement.query_result_long(0));
+        execution_result = compiled_statement.step();
+    }
+    if (execution_result != SQLITE_DONE)
+    {
+        std::cerr << "The query could not be fully executed:\n" << statement << "\n" <<
+                sqlite3_errstr(execution_result) << std::endl;        
+    }
+    this->statement_status = execution_result;
+    return result_list;
+}
+
+std::vector<long long> SQLiteConnection::query_long_column(const std::string statement) {
+    return this->query_long_column(statement.c_str());
+}
+
+std::vector<std::string> SQLiteConnection::query_string_column(const char* statement) {
+    std::vector<std::string> result_list;
+
+    if (this->database_connector == NULL)
+    {
+        throw std::logic_error("An attempt was made to use a closed SQLite connection.\n");
+    }
+    SQLiteStatement compiled_statement(this->database_connector, statement);
+    int execution_result = compiled_statement.step();
+    while (execution_result == SQLITE_ROW || execution_result == SQLITESTATEMENT_NOT_FINISHED)
+    {
+        result_list.emplace_back(compiled_statement.query_result_string(0));
+        execution_result = compiled_statement.step();
+    }
+    if (execution_result != SQLITE_DONE)
+    {
+        std::cerr << "The query could not be fully executed:\n" << statement << "\n" <<
+                sqlite3_errstr(execution_result) << std::endl;        
+    }
+    this->statement_status = execution_result;
+    
+    return result_list;
+}
+
+std::vector<std::string> SQLiteConnection::query_string_column(const std::string statement) {
+    return this->query_string_column(statement.c_str());
+}
+    
+std::vector<std::vector<long long>> SQLiteConnection::query_long_columns(const char* statement) {
+    std::vector<std::vector<long long>> result_lists;
+
+    if (this->database_connector == NULL)
+    {
+        throw std::logic_error("An attempt was made to use a closed SQLite connection.\n");
+    }
+    SQLiteStatement compiled_statement(this->database_connector, statement);
+    int num_cols = compiled_statement.num_columns(), col_num;
+    int execution_result = compiled_statement.step();
+    while (execution_result == SQLITE_ROW || execution_result == SQLITESTATEMENT_NOT_FINISHED)
+    {
+        result_lists.push_back(std::vector<long long>(num_cols));
+        for (col_num = 0; col_num < num_cols; ++col_num) {
+            result_lists.back()[col_num] = compiled_statement.query_result_long(col_num);
+        }
+        execution_result = compiled_statement.step();
+    }
+    if (execution_result != SQLITE_DONE)
+    {
+        std::cerr << "The query could not be fully executed:\n" << statement << "\n" <<
+                sqlite3_errstr(execution_result) << std::endl;        
+    }
+    this->statement_status = execution_result;
+    return result_lists;
+}
+
+std::vector<std::vector<long long>> SQLiteConnection::query_long_columns(const std::string statement) {
+    return this->query_long_columns(statement.c_str());
+}
+
+std::vector<std::vector<std::string>> SQLiteConnection::query_string_columns(const char* statement) {
+    // ToDo: Complete this function.
+    std::vector<std::vector<std::string>> result_lists;
+    
+    if (this->database_connector == NULL)
+    {
+        throw std::logic_error("An attempt was made to use a closed SQLite connection.\n");
+    }
+    SQLiteStatement compiled_statement(this->database_connector, statement);
+    int num_cols = compiled_statement.num_columns(), col_num;
+    int execution_result = compiled_statement.step();
+    while (execution_result == SQLITE_ROW || execution_result == SQLITESTATEMENT_NOT_FINISHED)
+    {
+        result_lists.push_back(std::vector<std::string>(num_cols));
+        for (col_num = 0; col_num < num_cols; ++col_num) {
+            result_lists.back()[col_num] = compiled_statement.query_result_string(col_num);
+        }
+        execution_result = compiled_statement.step();
+    }
+    if (execution_result != SQLITE_DONE)
+    {
+        std::cerr << "The query could not be fully executed:\n" << statement << "\n" <<
+                sqlite3_errstr(execution_result) << std::endl;        
+    }
+    this->statement_status = execution_result;
+    return result_lists;
+}
+
+std::vector<std::vector<std::string>> SQLiteConnection::query_string_columns(const std::string statement) {
+    return this->query_string_columns(statement.c_str());
 }
